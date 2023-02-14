@@ -7,6 +7,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
 
 const MATERIAL_MODULES = [
   MatFormFieldModule,
@@ -16,6 +18,8 @@ const MATERIAL_MODULES = [
   MatTableModule,
   MatSnackBarModule,
   MatTooltipModule,
+  MatProgressSpinnerModule,
+  MatIconModule,
 ];
 
 @NgModule({

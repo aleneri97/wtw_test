@@ -28,6 +28,13 @@ export class CalculatorComponent implements OnInit {
   displayedColumns = ['date', 'benchmark1', 'benchmark2'];
   /** * @description Currency field focused */
   focusedField = 0;
+  /** @description Searching flag for animation. Will be true while the data is being calculated */
+  searching = false;
+  /** @description Skeleton elements */
+  skeleton = {
+    columns: ['Reference Date', 'Benchmark 1', 'Benchmark 2'],
+    data: [{}, {}, {}, {}, {}]
+  };
 
   constructor(private fb: FormBuilder, private currencyPipe: CurrencyPipe, private _snackBar: MatSnackBar) { }
 
@@ -38,7 +45,11 @@ export class CalculatorComponent implements OnInit {
    */
   onFormSubmit() {
     if (this.form.valid) {
-      this.calculateData();
+      this.searching = true;
+      setTimeout(() => {
+        this.searching = false;
+        this.calculateData();
+      }, 3000);
     } else {
       this._snackBar.open('Entered data is not valid. Check the values and try again', '', { duration: 3000 });
     }
