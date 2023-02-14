@@ -10,7 +10,7 @@
           <span matTextPrefix *ngIf="focusedField === 1 || !!form.value.mainLimit">$&nbsp;</span>
           <input matInput formControlName="mainLimit" type="text" placeholder="00.00"
             (change)="formatCurrencyInput(1)" (focus)="focusedField = 1" (blur)="focusedField = 0">
-          <mat-error *ngIf="form.controls.mainLimit.errors">Decimal value required</mat-error>
+          <mat-error *ngIf="form.controls.mainLimit.errors">Positive decimal value required</mat-error>
         </mat-form-field>
       </div>
       <!-- Main Retention -->
@@ -20,7 +20,7 @@
           <span matTextPrefix *ngIf="focusedField === 2 || !!form.value.mainRetention">$&nbsp;</span>
           <input matInput formControlName="mainRetention" type="text" placeholder="00.00"
             (change)="formatCurrencyInput(2)" (focus)="focusedField = 2" (blur)="focusedField = 0">
-          <mat-error *ngIf="form.controls.mainRetention.errors">Decimal value required</mat-error>
+          <mat-error *ngIf="form.controls.mainRetention.errors">Positive decimal value required</mat-error>
         </mat-form-field>
       </div>
       <!-- Complexity -->
