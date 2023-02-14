@@ -41,6 +41,32 @@ export class CalculatorComponent implements OnInit {
   ngOnInit() { }
 
   /**
+   * @description Format currency fields, removing non numerical characters and then formatting to currency notation
+   * @param {number} fieldId Field to format
+   */
+  formatCurrencyInput(fieldId: number) {
+    if (fieldId === 1) {
+      const fieldValue = this.form.value.mainLimit?.replaceAll(/[^0-9.]/g, '') || 0;
+      this.form.controls.mainLimit.setValue(this.currencyPipe.transform(fieldValue, '', ''));
+    } else {
+      const fieldValue = this.form.value.mainRetention?.replaceAll(/[^0-9.]/g, '') || 0;
+      this.form.controls.mainRetention.setValue(this.currencyPipe.transform(fieldValue, '', ''));
+    }
+  }
+
+    /**
+   * @description Generate and change the table data
+   */
+  calculateData() {
+    const data = new Array(5 + Math.floor(Math.random() * 15)).fill(0).map(() => ({
+        date: new Date(new Date().getTime() - (Math.random() * 315360000000)),
+        benchmark1: Number((Math.random() * 100).toFixed(1)),
+        benchmark2: Number((Math.random() * 100).toFixed(1)),
+    }));
+    this.dataSource = new MatTableDataSource(data);
+  }
+
+  /**
    * @description Handles form submit
    */
   onFormSubmit() {
@@ -52,32 +78,6 @@ export class CalculatorComponent implements OnInit {
       }, 3000);
     } else {
       this._snackBar.open('Entered data is not valid. Check the values and try again', '', { duration: 3000 });
-    }
-  }
-
-  /**
-   * @description Generate and change the table data
-   */
-  calculateData() {
-    const data = new Array(5 + Math.floor(Math.random() * 15)).fill(0).map(() => ({
-        date: new Date(new Date().getTime() - (Math.random() * 315360000000)),
-        benchmark1: Number((Math.random() * 100).toFixed(2)),
-        benchmark2: Number((Math.random() * 100).toFixed(2)),
-    }));
-    this.dataSource = new MatTableDataSource(data);
-  }
-
-  /**
-   * @description Format currency fields, removing non numerical characters and then formatting to currency notation
-   * @param {number} fieldId Field to format
-   */
-  formatCurrencyInput(fieldId: number) {
-    if (fieldId === 1) {
-      const fieldValue = this.form.value.mainLimit?.replaceAll(/[^0-9.]/g, '') || 0;
-      this.form.controls.mainLimit.setValue(this.currencyPipe.transform(fieldValue, '', ''));
-    } else {
-      const fieldValue = this.form.value.mainRetention?.replaceAll(/[^0-9.]/g, '') || 0;
-      this.form.controls.mainRetention.setValue(this.currencyPipe.transform(fieldValue, '', ''));
     }
   }
 
