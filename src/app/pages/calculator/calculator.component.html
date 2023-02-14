@@ -1,1 +1,34 @@
-<p>calculator works!</p>
+<!-- Container -->
+<div class="container-fluid p-4">
+  <!-- Form -->
+  <form>
+    <!-- Main Limit -->
+    <div class="row justify-content-between">
+      <div class="col-12 col-md-3">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Main Limit</mat-label>
+          <input matInput type="number" placeholder="00.00">
+        </mat-form-field>
+      </div>
+      <!-- Main Retention -->
+      <div class="col-12 col-md-3">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Main Retention</mat-label>
+          <input matInput type="number" placeholder="00.00">
+        </mat-form-field>
+      </div>
+      <!-- Complexity -->
+      <div class="col-12 col-md-3 pb-2 pb-md-0">
+        <mat-label>Complexity Type</mat-label>
+        <mat-radio-group class="d-flex">
+          <mat-radio-button>Simple</mat-radio-button>
+          <mat-radio-button>Complex</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <!-- Calculate Btn -->
+      <div class="col-12 col-md-2">
+        <button mat-raised-button color="primary" class="w-100">Calculate</button>
+      </div>
+    </div>
+  </form>
+</div>
