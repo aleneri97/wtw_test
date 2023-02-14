@@ -33,6 +33,19 @@ export class CalculatorComponent implements OnInit {
    * @description Handles form submit
    */
   onFormSubmit() {
-    console.log(this.form.value);
+    this.calculateData();
   }
+
+  /**
+   * @description Generate and change the table data
+   */
+  calculateData() {
+    const data = new Array(5 + Math.floor(Math.random() * 15)).fill(0).map(() => ({
+        date: new Date(new Date().getTime() - (Math.random() * 315360000000)),
+        benchmark1: Number((Math.random() * 100).toFixed(2)),
+        benchmark2: Number((Math.random() * 100).toFixed(2)),
+    }));
+    this.dataSource = new MatTableDataSource(data);
+  }
+
 }
