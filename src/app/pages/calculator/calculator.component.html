@@ -10,6 +10,7 @@
           <span matTextPrefix *ngIf="focusedField === 1 || !!form.value.mainLimit">$&nbsp;</span>
           <input matInput formControlName="mainLimit" type="text" placeholder="00.00"
             (change)="formatCurrencyInput(1)" (focus)="focusedField = 1" (blur)="focusedField = 0">
+          <mat-error *ngIf="form.controls.mainLimit.errors">Decimal value required</mat-error>
         </mat-form-field>
       </div>
       <!-- Main Retention -->
@@ -19,6 +20,7 @@
           <span matTextPrefix *ngIf="focusedField === 2 || !!form.value.mainRetention">$&nbsp;</span>
           <input matInput formControlName="mainRetention" type="text" placeholder="00.00"
             (change)="formatCurrencyInput(2)" (focus)="focusedField = 2" (blur)="focusedField = 0">
+          <mat-error *ngIf="form.controls.mainRetention.errors">Decimal value required</mat-error>
         </mat-form-field>
       </div>
       <!-- Complexity -->
@@ -31,12 +33,17 @@
       </div>
       <!-- Calculate Btn -->
       <div class="col-12 col-md-2">
-        <button mat-raised-button color="primary" class="w-100">Calculate</button>
+        <!-- Disabled -->
+        <div *ngIf="!form.valid" matTooltip="Verify entered values">
+          <button mat-raised-button color="primary" class="w-100" [disabled]="true">Calculate</button>
+        </div>
+        <!-- Valid -->
+        <button *ngIf="form.valid" mat-raised-button color="primary" class="w-100">Calculate</button>
       </div>
     </div>
   </form>
   <!-- Table Data -->
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-5 mt-md-1">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-5 mt-md-2">
     <!-- Reference Date Column -->
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef>Reference Date</th>

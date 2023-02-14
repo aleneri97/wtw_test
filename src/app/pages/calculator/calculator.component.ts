@@ -1,6 +1,7 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 
 interface Row {
@@ -28,7 +29,7 @@ export class CalculatorComponent implements OnInit {
   /** * @description Currency field focused */
   focusedField = 0;
 
-  constructor(private fb: FormBuilder, private currencyPipe: CurrencyPipe) { }
+  constructor(private fb: FormBuilder, private currencyPipe: CurrencyPipe, private _snackBar: MatSnackBar) { }
 
   ngOnInit() { }
 
@@ -36,7 +37,11 @@ export class CalculatorComponent implements OnInit {
    * @description Handles form submit
    */
   onFormSubmit() {
-    this.calculateData();
+    if (this.form.valid) {
+      this.calculateData();
+    } else {
+      this._snackBar.open('Entered data is not valid. Check the values and try again', '', { duration: 3000 });
+    }
   }
 
   /**
